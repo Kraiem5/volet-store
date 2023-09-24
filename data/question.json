@@ -1,0 +1,243 @@
+{
+    "steps": {
+        "stepOne": [
+            {
+                "title": "Indiquez la pose",
+                "type": "radio",
+                "options": [
+                    {
+                        "label": "Livré Sans Coffre",
+                        "image": "assets/step1/livree sans coffre.png",
+                        "price": 75.0,
+                        "imageExmp": "assets/exmpStore/blanc/livre sans coffre1.png"
+                    },
+                    {
+                        "label": "Coffre Aluminium",
+                        "image": "assets/step1/coffre alluminium.png",
+                        "price": 85.0,
+                        "imageExmp": "assets/exmpStore/blanc/coffre_blanc.png"
+                    },
+                    {
+                        "label": "Coffre-Aluminium",
+                        "image": "assets/step1/coffre alluminium2.png",
+                        "price": 85.0,
+                        "imageExmp": "assets/exmpStore/blanc/coffre_blanc.png"
+                    },
+                    {
+                        "label": "Livré Sans-Coffre",
+                        "image": "assets/step1/livree sans coffre2.png",
+                        "price": 75.0,
+                        "imageExmp": "assets/exmpStore/blanc/livré-sans-coffre.png"
+                    }
+                ]
+            },
+            {
+                "title": "Choisissez la matière des lames",
+                "type": "radio",
+                "options": [
+                    {
+                        "label": "Lames Aluminium",
+                        "price": 20
+                    },
+                    {
+                        "label": "Lames PVC",
+                        "price": 20
+                    }
+                ]
+            },
+            {
+                "title": "Choisissez le coloris du volet roulant",
+                "type": "checkbox",
+                "options": [
+                    {
+                        "label": "Blanc",
+                        "image": "assets/couleur/couleur_blanc.png",
+                        "price": 15.0,
+                        "imageCouleur": {
+                            "livre": "assets/exmpStore/blanc/livre sans coffre1.png",
+                            "coffre": "assets/exmpStore/blanc/coffre_blanc.png",
+                            "livre-sans": "assets/exmpStore/blanc/livré-sans-coffre.png"
+                        }
+                    },
+                    {
+                        "label": "Gris",
+                        "image": "assets/couleur/couleur_gris.png",
+                        "price": 15.0,
+                        "imageCouleur": {
+                            "livre": "assets/exmpStore/gris/livre sans-gris.png",
+                            "coffre": "assets/exmpStore/gris/coffre-gris.png",
+                            "livre-sans": "assets/exmpStore/gris/livré-sans-gris.png"
+                        }
+                    },
+                    {
+                        "label": "Bois",
+                        "image": "assets/couleur/couleur_bois.png",
+                        "price": 15.0,
+                        "imageCouleur": {
+                            "livre": "assets/exmpStore/blanc/livre sans coffre1.png",
+                            "coffre": "assets/exmpStore/blanc/coffre_blanc.png",
+                            "livre-sans": "assets/exmpStore/blanc/livré-sans-coffre.png"
+                        }
+                    },
+                    {
+                        "label": "Beige",
+                        "image": "assets/couleur/couleur_beige.png",
+                        "price": 15.0,
+                        "imageCouleur": {
+                            "livre": "assets/exmpStore/blanc/livre sans coffre1.png",
+                            "coffre": "assets/exmpStore/blanc/coffre_blanc.png",
+                            "livre-sans": "assets/exmpStore/blanc/livré-sans-coffre.png"
+                        }
+                    },
+                    {
+                        "label": "Brun",
+                        "image": "assets/couleur/couleur_brun.png",
+                        "price": 15.0,
+                        "imageCouleur": {
+                            "livre": "assets/exmpStore/blanc/livre sans coffre1.png",
+                            "coffre": "assets/exmpStore/blanc/coffre_blanc.png",
+                            "livre-sans": "assets/exmpStore/blanc/livré-sans-coffre.png"
+                        }
+                    }
+                ]
+            }
+        ],
+        "stepTwo": [
+            {
+                "title": "Choisissez la manoeuvre",
+                "type": "radio",
+                "options": [
+                    {
+                        "label": "A Sangle",
+                        "image": "assets/step2/sangle.jpg",
+                        "id": 1,
+                        "price": 5.0
+                    },
+                    {
+                        "label": "Tirage",
+                        "image": "assets/step2/tirage.jpg",
+                        "id": 2,
+                        "price": 5.0
+                    },
+                    {
+                        "label": "Manivelle",
+                        "image": "assets/step2/manivelle.jpg",
+                        "id": 3,
+                        "price": 5.0
+                    },
+                    {
+                        "label": "Electrique",
+                        "image": "assets/step2/electrique-1.jpg",
+                        "id": 4,
+                        "price": 5.0
+                    },
+                    {
+                        "label": "Radio",
+                        "image": "assets/step2/radio-1.jpg",
+                        "id": 5,
+                        "price": 5.0
+                    },
+                    {
+                        "label": "Connecté IO",
+                        "image": "assets/step2/connecte_somfy-1.jpg",
+                        "id": 6,
+                        "price": 5.0
+                    }
+                ]
+            }
+        ],
+        "stepThree": [
+            {
+                "title": "Choisissez le côté de manœuvre",
+                "type": "radio",
+                "options": [
+                    {
+                        "label": "Droite",
+                        "id": 1
+                    },
+                    {
+                        "label": "Gauche",
+                        "id": 2
+                    }
+                ]
+            },
+            {
+                "title": "Choisissez le type de coffre",
+                "type": "radio",
+                "options": [
+                    {
+                        "label": "Forme PAN Coupe 45%",
+                        "image": "assets/type-coffre/pan-bois.png",
+                        "id": 1
+                    },
+                    {
+                        "label": "Forme QUART De Rond",
+                        "image": "assets/type-coffre/rond-bois.png",
+                        "id": 2
+                    }
+                ]
+            },
+            {
+                "title": "Livraison",
+                "type": "radio",
+                "options": [
+                    {
+                        "label": "Sans Livraison",
+                        "id": 1,
+                        "price": 0
+                    },
+                    {
+                        "label": "Avec livraison",
+                        "id": 2,
+                        "price": 15.0
+                    }
+                ]
+            }
+        ],
+        "stepFourth": [
+            {
+                "id": 1,
+                "title": "largeur",
+                "type": "text",
+                "options": [
+                    {}
+                ]
+            },
+            {
+                "title": "Nom",
+                "type": "text",
+                "options": [
+                    {}
+                ]
+            },
+            {
+                "title": "Téléphone",
+                "type": "number",
+                "options": [
+                    {}
+                ]
+            },
+            {
+                "title": "Adresse",
+                "type": "text",
+                "options": [
+                    {}
+                ]
+            },
+            {
+                "title": "E-mail",
+                "type": "mail",
+                "options": [
+                    {}
+                ]
+            },
+            {
+                "title": "",
+                "type": "submit",
+                "options": [
+                    {}
+                ]
+            }
+        ]
+    }
+}

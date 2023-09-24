@@ -1,0 +1,21 @@
+.RSPBprogressBar {
+  height: 25px !important; /* Adjust the height as per your preference */
+}
+
+.step {
+  width: 50px;
+  height: 50px;
+  background-color: #2196f3; /* Blue color */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white; /* Text color */
+  font-weight: bold;
+  font-size: 2rem; /* Adjust font size as needed */
+  cursor: pointer;
+}
+
+.completed {
+  background-color: green; /* Color for completed steps */
+}
