@@ -17,7 +17,6 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    console.log();
   }, [stepList]); // Log stepList when it changes
 
 

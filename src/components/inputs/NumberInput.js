@@ -1,13 +1,13 @@
 import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
 
-const NumberInput
- = () => {
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm();
+
+const NumberInput = ({onOptionSelected}) => {
+  const { handleSubmit, control, formState: { errors }, } = useForm();
+
+  const handleOptionClick= (event)=>{
+    onOptionSelected(event?.target?.value)
+  }
   return (
     <Controller
       name="name"
@@ -18,6 +18,8 @@ const NumberInput
           {...field}
           id="outlined-basic"
           variant="outlined"
+          onChange={(event)=>handleOptionClick(event)}
+          autoCapitalize='false'
         />
       )}
     />

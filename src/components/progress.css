@@ -5,7 +5,7 @@
 .step {
   width: 50px;
   height: 50px;
-  background-color: #2196f3; /* Blue color */
+  background-color: #2f93e6; /* Blue color */
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -17,5 +17,5 @@
 }
 
 .completed {
-  background-color: green; /* Color for completed steps */
+  background-color: rgb(78, 46, 218); /* Color for completed steps */
 }

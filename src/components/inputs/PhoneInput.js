@@ -1,8 +1,7 @@
 import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
 
-const PhoneInput
- = () => {
+const PhoneInput = () => {
   const {
     handleSubmit,
     control,

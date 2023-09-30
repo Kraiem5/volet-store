@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Card } from 'react-bootstrap';
 import { useForm, Controller } from 'react-hook-form';
 
-const RadioInput = ({ ques }) => {
+const RadioInput = ({ ques, onUpdateTotalPrice, onOptionSelected, ParentselectedOptions }) => {
   const [selectedOptions, setSelectedOptions] = useState({});
-  const [totalPrice, setTotalPrice] = useState(0);
-
+  console.log("ques",ques);
   const {
     handleSubmit,
     control,
@@ -17,29 +17,28 @@ const RadioInput = ({ ques }) => {
   };
 
   const handleOptionClick = (option) => {
+    console.log(option);
     setSelectedOptions((prevSelectedOptions) => ({
       ...prevSelectedOptions,
       [ques.title]: option.price,
     }));
-
-    // Calculate the total price by summing up the selected options' prices
-    const newTotalPrice = Object.values(selectedOptions).reduce(
-      (acc, price) => acc + price,
-      0
-    );
-    setTotalPrice(newTotalPrice);
+    onOptionSelected(option);
   };
+  useEffect(() => {
+    const newTotalPrice = Object.values(selectedOptions).reduce((acc, price) => acc + price, 0);
+    onUpdateTotalPrice(ques.title, newTotalPrice);
+  }, [selectedOptions, ques.title]);
+
 
   return (
     <div className='d-flex'>
       {Object.values(ques.options).map((option, index) => {
-        console.log(option.price);
         return (
           <div key={index}>
             <Controller
-              name={`ques_${ques.title}`} // Use a unique name for each radio group
+              name={`ques_${ques.title}`}
               control={control}
-              defaultValue="" // Set the default value as needed
+              defaultValue=""
               render={({ field }) => (
                 <div>
                   <label>
@@ -48,12 +47,19 @@ const RadioInput = ({ ques }) => {
                       {...field}
                       value={option.value}
                       onClick={() => handleOptionClick(option)}
+                      
                     />
-                    {option.image ? (
-                      <img src={option.image} alt={option.label} />
-                    ) : (
-                      <span>{option.label}</span>
-                    )}
+                    <Card style={{ width: '11rem' }}>
+                      {option.image ? (
+                        <>
+                          <Card.Img variant="top" src={option.image} />
+                          <Card.Text>{option.label}</Card.Text>
+                        </>
+                      ) : (
+                        <Card.Title>{option.label}</Card.Title>
+                      )}
+                    </Card>
+                    
                   </label>
                 </div>
               )}
@@ -61,7 +67,6 @@ const RadioInput = ({ ques }) => {
           </div>
         );
       })}
-      <p>Total Price: {totalPrice}</p>
     </div>
   );
 };

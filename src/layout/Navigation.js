@@ -9,7 +9,7 @@ const Navigation = () => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary px-5 sticky-top">
       <Container fluid>
-        <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+        <Navbar.Brand href="/step/1"><img src='/assets/logo/store-logo-1.png'></img></Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav

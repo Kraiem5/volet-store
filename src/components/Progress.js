@@ -13,7 +13,6 @@ const Progress = () => {
   const percent = (nbStep - 1) * 100 / (stepList?.length - 1)
 
   const handleIndex= (id)=>{
-    console.log(id);
     navigate(`/step/${id}`)
   }
 

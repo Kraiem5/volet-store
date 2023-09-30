@@ -6,10 +6,10 @@ import QuestionCard from '../components/QuestionCard';
 const Step = () => {
   const { nbStep } = useParams();
   return (
-    <div>
+      <div>
         <Progress />
         <QuestionCard currentStep={nbStep - 1} />
-    </div>
+      </div>
   );
 };
 
