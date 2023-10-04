@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { useForm, Controller } from 'react-hook-form';
 
-const RadioInput = ({ ques, onUpdateTotalPrice, onOptionSelected, ParentselectedOptions }) => {
-  const [selectedOptions, setSelectedOptions] = useState({});
-  console.log("ques",ques);
+const RadioInput = ({ ques, onUpdateTotalPrice, onOptionSelected, defaultValue }) => {
+  const [selectedOption, setSelectedOption] = useState(defaultValue || null);
+
   const {
     handleSubmit,
     control,
@@ -13,22 +13,18 @@ const RadioInput = ({ ques, onUpdateTotalPrice, onOptionSelected, Parentselected
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
   };
 
   const handleOptionClick = (option) => {
-    console.log(option);
-    setSelectedOptions((prevSelectedOptions) => ({
-      ...prevSelectedOptions,
-      [ques.title]: option.price,
-    }));
+    setSelectedOption(option); // Met à jour l'option sélectionnée
     onOptionSelected(option);
   };
-  useEffect(() => {
-    const newTotalPrice = Object.values(selectedOptions).reduce((acc, price) => acc + price, 0);
-    onUpdateTotalPrice(ques.title, newTotalPrice);
-  }, [selectedOptions, ques.title]);
 
+  useEffect(() => {
+    const newTotalPrice = selectedOption ? selectedOption.price : 0;
+    onUpdateTotalPrice(ques.title, newTotalPrice);
+  }, [selectedOption, ques.title]);
 
   return (
     <div className='d-flex'>
@@ -46,8 +42,8 @@ const RadioInput = ({ ques, onUpdateTotalPrice, onOptionSelected, Parentselected
                       type="radio"
                       {...field}
                       value={option.value}
-                      onClick={() => handleOptionClick(option)}
-                      
+                      checked={selectedOption === option} // Vérifie si l'option est sélectionnée
+                      onChange={() => handleOptionClick(option)} // Met à jour l'option sélectionnée
                     />
                     <Card style={{ width: '11rem' }}>
                       {option.image ? (
@@ -59,7 +55,6 @@ const RadioInput = ({ ques, onUpdateTotalPrice, onOptionSelected, Parentselected
                         <Card.Title>{option.label}</Card.Title>
                       )}
                     </Card>
-                    
                   </label>
                 </div>
               )}

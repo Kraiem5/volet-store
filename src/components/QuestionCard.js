@@ -7,16 +7,17 @@ import TextInput from './inputs/TextInput';
 import EmailInput from './inputs/EmailInput';
 import PhoneInput from './inputs/PhoneInput';
 import NumberInput from './inputs/NumberInput';
+import SelectOption from './inputs/SelectOption'
 import Devis from './Devis';
+import { Card } from 'react-bootstrap';
 
 const QuestionCard = ({ currentStep }) => {
   const stepList = useSelector((state) => state?.ste?.stepData?.stepList);
   const [totalPrices, setTotalPrices] = useState({});
   const navigate = useNavigate()
   const [selectedOptions, setSelectedOptions] = useState({});
-  const questions = Object.values(selectedOptions).map((value) => value.questions)
-  // const ques=stepList[currentStep]?.questions?.map(ques=>ques)
-  // console.log(ques);
+  const [selectedOptionDescription, setSelectedOptionDescription] = useState('');
+
   const handleUpdateTotalPrice = (questionTitle, totalPrice) => {
     setTotalPrices((prevTotalPrices) => ({
       ...prevTotalPrices,
@@ -25,16 +26,23 @@ const QuestionCard = ({ currentStep }) => {
   };
 
   const handleOptionSelected = (questionTitle, option) => {
-    console.log(option);
     setSelectedOptions((prevSelectedOptions) => ({
       ...prevSelectedOptions,
       [questionTitle]: option,
     }));
-
+    setSelectedOptionDescription(option.description || selectedOptionDescription);
   };
 
   const calculateTotal = () => {
-    return Object.values(totalPrices).reduce((acc, price) => acc + price, 0);
+    const totalPriceArray = Object.values(totalPrices);
+
+    const validPrices = totalPriceArray.filter((price) => !isNaN(price));
+
+    if (validPrices.length > 0) {
+      return validPrices.reduce((acc, price) => acc + price, 0);
+    } else {
+      return 0;
+    }
   };
   const handleStepPrev = (id) => {
     let newId = id - 1
@@ -44,21 +52,19 @@ const QuestionCard = ({ currentStep }) => {
     let newId = id + 1
     navigate(`/step/${newId}`)
   }
-
   return (
     <div>
-
       <div>
         {stepList[currentStep]?.questions?.map((question) => {
-          // console.log("yyy", question);
+          const defaultValue = selectedOptions[question.title] || ''
           return (
             <div key={question.title}>
               <h5>{question.title}</h5>
               {question.type === 'radio' && (
-                <RadioInput ques={question} onUpdateTotalPrice={handleUpdateTotalPrice} onOptionSelected={(option) => handleOptionSelected(question.title, option)} />
+                <RadioInput ques={question} onUpdateTotalPrice={handleUpdateTotalPrice} onOptionSelected={(option) => handleOptionSelected(question.title, option)} defaultValue={defaultValue} />
               )}
               {question.type === 'checkbox' && (
-                <CheckBox ques={question} onUpdateTotalPrice={handleUpdateTotalPrice} onOptionSelected={(option) => handleOptionSelected(question.title, option)} parentSelectedOption={selectedOptions} />
+                <CheckBox ques={question} onUpdateTotalPrice={handleUpdateTotalPrice} onOptionSelected={(option) => handleOptionSelected(question.title, option)} defaultValue={defaultValue} />
               )}
               {question.type === 'text' && (
                 <TextInput />
@@ -70,48 +76,65 @@ const QuestionCard = ({ currentStep }) => {
                 <PhoneInput />
               )}
               {question.type === 'number' && (
-                <NumberInput onOptionSelected={(option) => handleOptionSelected(question.title, option)} />
+                <NumberInput ques={question} onUpdateTotalPrice={handleUpdateTotalPrice} onOptionSelected={(option) => handleOptionSelected(question.title, option)} defaultValue={defaultValue} />
               )}
+              {question.type === 'select' && (
+                <SelectOption ques={question} onOptionSelected={(option) => handleOptionSelected(question.title, option)} defaultValue={defaultValue} />
+              )}
+
             </div>
           )
         })}
       </div>
-      <>
-        {Object.keys(selectedOptions).length > 0 &&
-          Object.entries(selectedOptions).map(([questionTitle, option], ind) => {
-            console.log(questionTitle);
-            console.log(option);
-            return (
-              <div key={ind}>
-                {/* <h5>{questionTitle}</h5> */}
-                {option.type === 'radio' && (
-                  <RadioInput ques={option} onUpdateTotalPrice={handleUpdateTotalPrice} onOptionSelected={(opt) => handleOptionSelected(questionTitle, opt)} />
-                )}
-                {option.type === 'checkbox' && (
-                  <CheckBox ques={option} onUpdateTotalPrice={handleUpdateTotalPrice} onOptionSelected={(opt) => handleOptionSelected(questionTitle, opt)} />
-                )}
-                {/* ... autres types de questions pour 'option' ... */}
-                {option.questions && option.questions.length > 0 && (
-                  <div>
-                    {option.questions.map((subQuestion, subInd) => (
-                      <div key={subInd}>
-                        <h5>{subQuestion.title}</h5>
-                        {subQuestion.type === 'radio' && (
-                          <RadioInput ques={subQuestion} onUpdateTotalPrice={handleUpdateTotalPrice} onOptionSelected={(subOpt) => handleOptionSelected(subQuestion.title, subOpt)} />
-                        )}
-                        {subQuestion.type === 'checkbox' && (
-                          <CheckBox ques={subQuestion} onUpdateTotalPrice={handleUpdateTotalPrice} onOptionSelected={(subOpt) => handleOptionSelected(subQuestion.title, subOpt)} />
-                        )}
-                        {/* ... autres types de questions pour 'subQuestion' ... */}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            );
-          })}
+      <div className='d-flex'>
+        <div>
+          {currentStep === 1 && Object.keys(selectedOptions).length > 0 &&
+            Object.entries(selectedOptions).map(([questionTitle, option], ind) => {
+              const defaultValue = selectedOptions[questionTitle] || '';
+              return (
+                <div key={ind}>
+                  {option.type === 'radio' && (
+                    <RadioInput ques={option} onUpdateTotalPrice={handleUpdateTotalPrice} onOptionSelected={(opt) => handleOptionSelected(questionTitle, opt)} defaultValue={defaultValue} />
+                  )}
+                  {option.type === 'checkbox' && (
+                    <CheckBox ques={option} onUpdateTotalPrice={handleUpdateTotalPrice} onOptionSelected={(opt) => handleOptionSelected(questionTitle, opt)} defaultValue={defaultValue} />
+                  )}
+                  {option.questions && option.questions.length > 0 && (
+                    <div>
+                      {option.questions.map((subQuestion, subInd) => (
+                        <div key={subInd}>
+                          <h5>{subQuestion.title}</h5>
+                          <div className='d-flex'>
+                            <div>
+                              {subQuestion.type === 'radio' && (
+                                <RadioInput ques={subQuestion} onUpdateTotalPrice={handleUpdateTotalPrice} onOptionSelected={(subOpt) => handleOptionSelected(subQuestion.title, subOpt)} />
+                              )}
+                              {subQuestion.type === 'checkbox' && (
+                                <CheckBox ques={subQuestion} onUpdateTotalPrice={handleUpdateTotalPrice} onOptionSelected={(subOpt) => handleOptionSelected(subQuestion.title, subOpt)} />
+                              )}
+                              {/* ... autres types de questions pour 'subQuestion' ... */}
+                            </div>
 
-      </>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+        </div>
+        <div>
+          {selectedOptionDescription && (
+            <Card style={{ width: '30rem'}}>
+              <Card.Body>
+                <Card.Title>Description : </Card.Title>
+                <Card.Text>{selectedOptionDescription}</Card.Text>
+              </Card.Body>
+            </Card>
+          )}
+        </div>
+      </div>
       <div className="d-flex justify-content-end mx-5">
         <div className=" x-20">
           {currentStep > 0 && (
@@ -128,8 +151,12 @@ const QuestionCard = ({ currentStep }) => {
             <>
               <div>
                 <button type='submit' >Envoyer</button>
+
               </div>
-              <Devis stepList={stepList} prix={calculateTotal()} selectedOption={selectedOptions} />
+              <>
+
+                <Devis stepList={stepList} prix={calculateTotal()} selectedOption={selectedOptions} />
+              </>
             </>
           )
           }
@@ -142,3 +169,4 @@ const QuestionCard = ({ currentStep }) => {
 };
 
 export default QuestionCard;
+// ça marchie bien , mais il y a un petit probleme , la description affiche deux fois

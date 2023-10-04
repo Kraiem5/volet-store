@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
-const CheckboxInput = ({ ques, onUpdateTotalPrice, onOptionSelected }) => {
-  const [selectedOption, setSelectedOption] = useState(null);
-  // console.log("aaaaaaaa", parentSelectedOption);
+const CheckboxInput = ({ ques, onUpdateTotalPrice, onOptionSelected, defaultValue }) => {
+  const [selectedOption, setSelectedOption] = useState(defaultValue || null); // Utilisez null au lieu d'une chaîne vide
+  const [selectedOptionDescription, setSelectedOptionDescription] = useState('');
+
   const {
     handleSubmit,
     control,
@@ -17,6 +18,7 @@ const CheckboxInput = ({ ques, onUpdateTotalPrice, onOptionSelected }) => {
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
+    setSelectedOptionDescription(option.description); // Mettez à jour la description lorsque l'option est sélectionnée
     onOptionSelected(option);
   };
 
@@ -41,16 +43,15 @@ const CheckboxInput = ({ ques, onUpdateTotalPrice, onOptionSelected }) => {
                     <input
                       type="checkbox"
                       {...field}
-                      checked={isSelected }
-                      // checked={option.label === Object.values(parentSelectedOption).map((value) => value.label)}
+                      checked={isSelected}
                       value={option.value}
                       onClick={() => handleOptionClick(option)}
                     />
                     {option.image ? (
                       <>
                         <img src={option.image} alt={option.label} />
-                        <span>{option.label}</span></>
-
+                        <span>{option.label}</span>
+                      </>
                     ) : (
                       <span>{option.label}</span>
                     )}
@@ -61,6 +62,7 @@ const CheckboxInput = ({ ques, onUpdateTotalPrice, onOptionSelected }) => {
           </div>
         );
       })}
+      {/* <div>{selectedOptionDescription}</div> Affichez la description ici */}
     </div>
   );
 };

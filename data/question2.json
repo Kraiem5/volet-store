@@ -95,20 +95,20 @@
                             "label": "Tirage",
                             "image": "/assets/step2/tirage.jpg",
                             "id": 2,
-                            "price": 5.0
+                            "price": 6.0
                         },
                         {
                             "label": "Manivelle",
                             "image": "/assets/step2/manivelle.jpg",
                             "id": 3,
-                            "price": 5.0
+                            "price": 7.0
                         },
                         {
                             "label": "Electrique",
                             "image": "/assets/step2/electrique-1.jpg",
                             "id": 4,
-                            "price": 5.0,
-                            "description": "",
+                            "description": "Le volet roulant solaire accessible à tous Un prix de moteur solaire hyper compétitif pour installer des volets automatiques le plus facilement possible, sans toucher au réseau électrique. Sa motorisation basse tension est associée à un panneau solaire et à une batterie ; tout est prémonté en usine et garanti 5 ans. Installation 100 % sans fil avec les télécommandes, et la possibilité d’automatiser toute la maison avec des commandes groupées ou une horloge de programmation.",
+                            "price": 8.0,
                             "questions": [
                                 {
                                     "title": "Choisissez la marque",
@@ -118,7 +118,7 @@
                                             "label": "Somfy",
                                             "image": "/assets/marque/electrique/somfy.png",
                                             "id": 1,
-                                            "price": 5.0,
+                                            "price": 15.0,
                                             "description": "La motorisation la plus économique Somfy est une marque chinoise leurs moteurs de fabrication standard sont reconnus pour leur fiabilité.",
                                             "questions": [
                                                 {
@@ -129,13 +129,13 @@
                                                             "label": "Commande Somfy En Applique",
                                                             "image": "/assets/marque/electrique/type/Bubendorf En Applique.png",
                                                             "id": 1,
-                                                            "price": 5.0
+                                                            "price": 25.0
                                                         },
                                                         {
                                                             "label": "Commande Somfy Encastré",
                                                             "image": "/assets/marque/electrique/type/Bubendorf En Applique.png",
                                                             "id": 1,
-                                                            "price": 5.0
+                                                            "price": 8.0
                                                         }
                                                     ]
                                                 }
@@ -145,7 +145,7 @@
                                             "label": "Bubendorf",
                                             "image": "/assets/marque/electrique/Bubendorf.png",
                                             "id": 2,
-                                            "price": 5.0,
+                                            "price": 12.0,
                                             "description": "Puissant, robuste et économique. Fabriqués en Europe pour le compte de Bubendorf les moteurs Bubendorf sont le juste équilibre entre qualité de produit et prix attractif.",
                                             "questions": [
                                                 {
@@ -156,13 +156,13 @@
                                                             "label": "Commande Bubendorf En Applique",
                                                             "image": "/assets/marque/electrique/type/Bubendorf En Applique.png",
                                                             "id": 1,
-                                                            "price": 5.0
+                                                            "price": 9.0
                                                         },
                                                         {
                                                             "label": "Commande Bubendorf EnCastré",
                                                             "image": "/assets/marque/electrique/type/Bubendorf En Applique.png",
                                                             "id": 1,
-                                                            "price": 5.0
+                                                            "price": 13.0
                                                         }
                                                     ]
                                                 }
@@ -172,7 +172,7 @@
                                             "label": "A-Ok",
                                             "image": "/assets/marque/electrique/AOk.png",
                                             "id": 3,
-                                            "price": 5.0,
+                                            "price": 14.0,
                                             "description": "Fiabilité, silence et facilité de pose: la marque A-ok Livrés avec un bouton de command eA-ok®, à installer avec le boitier fourni, ou à encastrer. A-ok : leader mondial des automatismes du bâtiment.",
                                             "questions": [
                                                 {
@@ -183,13 +183,13 @@
                                                             "label": "Commande A-Ok En Applique",
                                                             "image": "/assets/marque/electrique/type/AOk_applique.png",
                                                             "id": 1,
-                                                            "price": 5.0
+                                                            "price": 20.0
                                                         },
                                                         {
                                                             "label": "Commande A-Ok EnCastré",
                                                             "image": "/assets/marque/electrique/type/AOk_applique.png",
                                                             "id": 1,
-                                                            "price": 5.0
+                                                            "price": 30.0
                                                         }
                                                     ]
                                                 }
@@ -199,7 +199,7 @@
                                             "label": "Simu",
                                             "image": "/assets/marque/electrique/Simu.png",
                                             "id": 4,
-                                            "price": 5.0,
+                                            "price": 17.0,
                                             "description": "La motorisation la plus économique Semu  est une marque chinoise, leurs moteurs de fabrication standard sont reconnus pour leur fiabilité.",
                                             "questions": [
                                                 {
@@ -210,13 +210,13 @@
                                                             "label": "Commande Simu En Applique",
                                                             "image": "/assets/marque/electrique/type/AOk_applique.png",
                                                             "id": 1,
-                                                            "price": 5.0
+                                                            "price": 13.0
                                                         },
                                                         {
                                                             "label": "Commande Simu EnCastré",
                                                             "image": "/assets/marque/electrique/type/AOk_applique.png",
                                                             "id": 1,
-                                                            "price": 5.0
+                                                            "price": 28.0
                                                         }
                                                     ]
                                                 }
@@ -226,7 +226,7 @@
                                             "label": "Gaposa",
                                             "image": "/assets/marque/electrique/Gaposa.png",
                                             "id": 5,
-                                            "price": 5.0,
+                                            "price": 7.0,
                                             "description": "La motorisation la plus économique Gaposa est une marque chinoise, leurs moteurs de fabrication standard sont reconnus pour leur fiabilité.",
                                             "questions": [
                                                 {
@@ -243,7 +243,7 @@
                                                             "label": "Commande Gaposa EnCastré",
                                                             "image": "/assets/marque/electrique/type/AOk_applique.png",
                                                             "id": 1,
-                                                            "price": 5.0
+                                                            "price": 15.0
                                                         }
                                                     ]
                                                 }
@@ -257,8 +257,8 @@
                             "label": "Radio",
                             "image": "/assets/step2/radio-1.jpg",
                             "id": 5,
-                            "price": 5.0,
-                            "description": "",
+                            "description": "Le volet roulant solaire accessible à tous Un prix de moteur solaire hyper compétitif pour installer des volets automatiques le plus facilement possible, sans toucher au réseau électrique. Sa motorisation basse tension est associée à un panneau solaire et à une batterie ; tout est prémonté en usine et garanti 5 ans. Installation 100 % sans fil avec les télécommandes, et la possibilité d’automatiser toute la maison avec des commandes groupées ou une horloge de programmation.",
+                            "price": 9.0,
                             "questions": [
                                 {
                                     "title": "Choisissez la marque",
@@ -266,7 +266,7 @@
                                     "options": [
                                         {
                                             "label": "AOK - Économique",
-                                            "image": "/assets/marque/radio/radio_amc.jpg",
+                                            "image": "/assets/marque/radio/radio_aok.jpg",
                                             "id": 1,
                                             "price": 5.0,
                                             "description": "La motorisation la plus économique Un volet roulant électrique radio est un volet roulant motorisé et commandable par une télécommande sans fil. Trois marques sont à votre disposition : AOK : le plus économique, AMC : le meilleur rapport qualité/prix, SOMFY : marque française leader. Les volets sont livrés prêts à installer, avec une ou plusieurs télécommandes (au choix), ils sont garantis 5 ans.",
@@ -293,7 +293,7 @@
                                         },
                                         {
                                             "label": "Bubendorf",
-                                            "image": "/assets/marque/radio/radio_aok.jpg",
+                                            "image": "/assets/marque/radio/radio_amc.jpg",
                                             "id": 2,
                                             "price": 5.0,
                                             "description": "Puissant, robuste et économique. Fabriqués en Europe pour le compte de Bubendorf les moteurs Bubendorf sont le juste équilibre entre qualité de produit et prix attractif.",
@@ -304,13 +304,13 @@
                                                     "options": [
                                                         {
                                                             "label": "Commande Murale Individuelle",
-                                                            "image": "/assets/marque/radio/type/murale-bubendorf.jpg",
+                                                            "image": "/assets/marque/radio/type/murale-bubendorf.png",
                                                             "id": 1,
                                                             "price": 5.0
                                                         },
                                                         {
                                                             "label": "Commande Portative Individuelle",
-                                                            "image": "/assets/step2/electrique-1.jpg",
+                                                            "image": "/assets/marque/radio/type/portative-bubendorf.png",
                                                             "id": 1,
                                                             "price": 5.0
                                                         }
@@ -331,13 +331,13 @@
                                                     "options": [
                                                         {
                                                             "label": "Commande Murale Individuelle",
-                                                            "image": "/assets/step2/electrique-1.jpg",
+                                                            "image": "/assets/marque/radio/type/murale-somfy.png",
                                                             "id": 1,
                                                             "price": 5.0
                                                         },
                                                         {
                                                             "label": "Commande Portative Individuelle",
-                                                            "image": "/assets/step2/electrique-1.jpg",
+                                                            "image": "/assets/marque/radio/type/portative-somfy.png",
                                                             "id": 1,
                                                             "price": 5.0
                                                         }
@@ -353,8 +353,8 @@
                             "label": "Connecté IO",
                             "image": "/assets/step2/connecte_somfy-1.jpg",
                             "id": 6,
-                            "price": 5.0,
-                            "description": "",
+                            "price": 10.0,
+                            "description": "Le volet roulant solaire accessible à tous Un prix de moteur solaire hyper compétitif pour installer des volets automatiques le plus facilement possible, sans toucher au réseau électrique. Sa motorisation basse tension est associée à un panneau solaire et à une batterie ; tout est prémonté en usine et garanti 5 ans. Installation 100 % sans fil avec les télécommandes, et la possibilité d’automatiser toute la maison avec des commandes groupées ou une horloge de programmation.",
                             "questions": [
                                 {
                                     "title": "Choisissez la marque",
@@ -364,7 +364,7 @@
                                             "label": "Somfy",
                                             "image": "/assets/marque/connectéIo/connecte_somfy.jpg",
                                             "id": 1,
-                                            "price": 5.0,
+                                            "price": 7.0,
                                             "description": "Le volet roulant solaire accessible à tous Un prix de moteur solaire hyper compétitif pour installer des volets automatiques le plus facilement possible, sans toucher au réseau électrique. Sa motorisation basse tension est associée à un panneau solaire et à une batterie ; tout est prémonté en usine et garanti 5 ans. Installation 100 % sans fil avec les télécommandes, et la possibilité d’automatiser toute la maison avec des commandes groupées ou une horloge de programmation.",
                                             "questions": [
                                                 {
@@ -381,7 +381,7 @@
                                                             "label": "Commande Portative Individuelle",
                                                             "image": "/assets/step2/electrique-1.jpg",
                                                             "id": 1,
-                                                            "price": 5.0
+                                                            "price": 8.0
                                                         }
                                                     ]
                                                 }
@@ -395,27 +395,37 @@
                 },
                 {
                     "title": "Choisissez le côté de manœuvre",
-                    "type": "radio",
+                    "type": "select",
                     "options": [
                         {
                             "label": "Droite",
-                            "id": 1,
-                            "price": 0
+                            "id": 1
                         },
                         {
                             "label": "Gauche",
-                            "id": 2,
-                            "price": 0
+                            "id": 2
                         }
                     ]
                 },
                 {
-                    "title": "hauter",
-                    "type": "number"
+                    "title": "Hauter",
+                    "type": "number",
+                    "options": [
+                        {
+                            "id": 1,
+                            "price": 0.139
+                        }
+                    ]
                 },
                 {
                     "title": "largeur",
-                    "type": "number"
+                    "type": "number",
+                    "options": [
+                        {
+                            "id": 2,
+                            "price": 0.139
+                        }
+                    ]
                 }
             ]
         },
@@ -425,7 +435,8 @@
             "questions": [
                 {
                     "title": "Quantité",
-                    "type": "number"
+                    "type": "number",
+                    "id": 1
                 },
                 {
                     "title": "Choisissez le type de coffre",
@@ -434,14 +445,12 @@
                         {
                             "label": "Forme PAN Coupe 45%",
                             "image": "/assets/type-coffre/pan-bois.png",
-                            "id": 1,
-                            "price": 0
+                            "id": 1
                         },
                         {
                             "label": "Forme QUART De Rond",
                             "image": "/assets/type-coffre/rond-bois.png",
-                            "id": 2,
-                            "price": 0
+                            "id": 2
                         }
                     ]
                 },
