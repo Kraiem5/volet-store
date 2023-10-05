@@ -64,19 +64,21 @@ const QuestionCard = ({ currentStep }) => {
 
             removeSubOptionsAndQuestions(subQuestion);
           });
+          
         }
       };
-
+      
       // Supprimer toutes les sous-questions et sous-options de l'option précédemment sélectionnée
       const previousOption = updatedSelectedOptions[questionTitle];
       if (previousOption) {
         removeSubOptionsAndQuestions(previousOption);
       }
-console.log(option);
+      console.log(option);
       updatedSelectedOptions[questionTitle] = option;
-
+      
       return updatedSelectedOptions;
     });
+    setSelectedOptionDescription(option.description || selectedOptionDescription);
   };
 
 
@@ -207,4 +209,3 @@ console.log(option);
 };
 
 export default QuestionCard;
-// ça marchie bien , mais il y a un petit probleme , la description affiche deux fois
