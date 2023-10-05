@@ -11,6 +11,9 @@ import SelectOption from './inputs/SelectOption'
 import Devis from './Devis';
 import { Card } from 'react-bootstrap';
 
+
+
+
 const QuestionCard = ({ currentStep }) => {
   const stepList = useSelector((state) => state?.ste?.stepData?.stepList);
   const [totalPrices, setTotalPrices] = useState({});
@@ -25,13 +28,57 @@ const QuestionCard = ({ currentStep }) => {
     }));
   };
 
+
+
   const handleOptionSelected = (questionTitle, option) => {
-    setSelectedOptions((prevSelectedOptions) => ({
-      ...prevSelectedOptions,
-      [questionTitle]: option,
-    }));
-    setSelectedOptionDescription(option.description || selectedOptionDescription);
+    setSelectedOptions((prevSelectedOptions) => {
+      const updatedSelectedOptions = { ...prevSelectedOptions };
+
+      // Fonction récursive pour supprimer les sous-options et sous-questions
+      const removeSubOptionsAndQuestions = (opt) => {
+        if (opt.questions && opt.questions.length > 0) {
+          opt.questions.forEach((subQuestion) => {
+            // console.log("subquestion", updatedSelectedOptions[subQuestion.title].price);
+            // if (updatedSelectedOptions[subQuestion.title]?.price) {
+            //   updatedSelectedOptions[subQuestion.title].price = 0;
+            // }
+            delete updatedSelectedOptions[subQuestion.title];
+
+            if (subQuestion.options && subQuestion.options.length > 0) {
+              subQuestion.options.forEach((subOption) => {
+                // console.log("suboption", updatedSelectedOptions[subOption.title]);
+                delete updatedSelectedOptions[subOption.title];
+
+                // Si cette sous-option a également des sous-questions, supprimez-les également
+                if (subOption.questions && subOption.questions.length > 0) {
+                  subOption.questions.forEach((subSubQuestion) => {
+                    // console.log("subsub", updatedSelectedOptions[subSubQuestion.title]);
+                    // if (updatedSelectedOptions[subSubQuestion.title]?.price) {
+                    //   updatedSelectedOptions[subSubQuestion.title].price = 0;
+                    // }
+                    delete updatedSelectedOptions[subSubQuestion.title];
+                  });
+                }
+              });
+            }
+
+            removeSubOptionsAndQuestions(subQuestion);
+          });
+        }
+      };
+
+      // Supprimer toutes les sous-questions et sous-options de l'option précédemment sélectionnée
+      const previousOption = updatedSelectedOptions[questionTitle];
+      if (previousOption) {
+        removeSubOptionsAndQuestions(previousOption);
+      }
+console.log(option);
+      updatedSelectedOptions[questionTitle] = option;
+
+      return updatedSelectedOptions;
+    });
   };
+
 
   const calculateTotal = () => {
     const totalPriceArray = Object.values(totalPrices);
@@ -52,39 +99,46 @@ const QuestionCard = ({ currentStep }) => {
     let newId = id + 1
     navigate(`/step/${newId}`)
   }
+  const renderQuestions = (questions, prefix = '') => {
+    return questions.map((question, index) => {
+      const defaultValue = selectedOptions[question.title] || '';
+
+      return (
+        <div key={index}>
+          <h5>{prefix + question.title}</h5>
+          {question.type === 'radio' && (
+            <RadioInput ques={question} onUpdateTotalPrice={handleUpdateTotalPrice} onOptionSelected={(option) => handleOptionSelected(question.title, option)} defaultValue={defaultValue} />
+          )}
+          {question.type === 'checkbox' && (
+            <CheckBox ques={question} onUpdateTotalPrice={handleUpdateTotalPrice} onOptionSelected={(option) => handleOptionSelected(question.title, option)} defaultValue={defaultValue} />
+          )}
+          {question.type === 'text' && (
+            <TextInput />
+          )}
+          {question.type === 'mail' && (
+            <EmailInput />
+          )}
+          {question.type === 'tel' && (
+            <PhoneInput />
+          )}
+          {question.type === 'number' && (
+            <NumberInput ques={question} onUpdateTotalPrice={handleUpdateTotalPrice} onOptionSelected={(option) => handleOptionSelected(question.title, option)} defaultValue={defaultValue} />
+          )}
+          {question.type === 'select' && (
+            <SelectOption ques={question} onOptionSelected={(option) => handleOptionSelected(question.title, option)} defaultValue={defaultValue} />
+          )}
+
+          {/* Si la question a des sous-questions, appelez la fonction de manière récursive */}
+          {question.questions && question.questions.length > 0 && renderQuestions(question.questions, `${prefix} - `)}
+        </div>
+      );
+    });
+  };
+  console.log(selectedOptions);
   return (
     <div>
       <div>
-        {stepList[currentStep]?.questions?.map((question) => {
-          const defaultValue = selectedOptions[question.title] || ''
-          return (
-            <div key={question.title}>
-              <h5>{question.title}</h5>
-              {question.type === 'radio' && (
-                <RadioInput ques={question} onUpdateTotalPrice={handleUpdateTotalPrice} onOptionSelected={(option) => handleOptionSelected(question.title, option)} defaultValue={defaultValue} />
-              )}
-              {question.type === 'checkbox' && (
-                <CheckBox ques={question} onUpdateTotalPrice={handleUpdateTotalPrice} onOptionSelected={(option) => handleOptionSelected(question.title, option)} defaultValue={defaultValue} />
-              )}
-              {question.type === 'text' && (
-                <TextInput />
-              )}
-              {question.type === 'mail' && (
-                <EmailInput />
-              )}
-              {question.type === 'tel' && (
-                <PhoneInput />
-              )}
-              {question.type === 'number' && (
-                <NumberInput ques={question} onUpdateTotalPrice={handleUpdateTotalPrice} onOptionSelected={(option) => handleOptionSelected(question.title, option)} defaultValue={defaultValue} />
-              )}
-              {question.type === 'select' && (
-                <SelectOption ques={question} onOptionSelected={(option) => handleOptionSelected(question.title, option)} defaultValue={defaultValue} />
-              )}
-
-            </div>
-          )
-        })}
+        {stepList[currentStep]?.questions && renderQuestions(stepList[currentStep].questions)}
       </div>
       <div className='d-flex'>
         <div>
@@ -101,23 +155,7 @@ const QuestionCard = ({ currentStep }) => {
                   )}
                   {option.questions && option.questions.length > 0 && (
                     <div>
-                      {option.questions.map((subQuestion, subInd) => (
-                        <div key={subInd}>
-                          <h5>{subQuestion.title}</h5>
-                          <div className='d-flex'>
-                            <div>
-                              {subQuestion.type === 'radio' && (
-                                <RadioInput ques={subQuestion} onUpdateTotalPrice={handleUpdateTotalPrice} onOptionSelected={(subOpt) => handleOptionSelected(subQuestion.title, subOpt)} />
-                              )}
-                              {subQuestion.type === 'checkbox' && (
-                                <CheckBox ques={subQuestion} onUpdateTotalPrice={handleUpdateTotalPrice} onOptionSelected={(subOpt) => handleOptionSelected(subQuestion.title, subOpt)} />
-                              )}
-                              {/* ... autres types de questions pour 'subQuestion' ... */}
-                            </div>
-
-                          </div>
-                        </div>
-                      ))}
+                      {renderQuestions(option.questions)}
                     </div>
                   )}
                 </div>
@@ -126,7 +164,7 @@ const QuestionCard = ({ currentStep }) => {
         </div>
         <div>
           {selectedOptionDescription && (
-            <Card style={{ width: '30rem'}}>
+            <Card style={{ width: '30rem' }}>
               <Card.Body>
                 <Card.Title>Description : </Card.Title>
                 <Card.Text>{selectedOptionDescription}</Card.Text>

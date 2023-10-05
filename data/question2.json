@@ -118,7 +118,7 @@
                                             "label": "Somfy",
                                             "image": "/assets/marque/electrique/somfy.png",
                                             "id": 1,
-                                            "price": 15.0,
+                                            "price": 225.0,
                                             "description": "La motorisation la plus économique Somfy est une marque chinoise leurs moteurs de fabrication standard sont reconnus pour leur fiabilité.",
                                             "questions": [
                                                 {
@@ -129,7 +129,7 @@
                                                             "label": "Commande Somfy En Applique",
                                                             "image": "/assets/marque/electrique/type/Bubendorf En Applique.png",
                                                             "id": 1,
-                                                            "price": 25.0
+                                                            "price": 100.0
                                                         },
                                                         {
                                                             "label": "Commande Somfy Encastré",
@@ -145,7 +145,7 @@
                                             "label": "Bubendorf",
                                             "image": "/assets/marque/electrique/Bubendorf.png",
                                             "id": 2,
-                                            "price": 12.0,
+                                            "price": 500.0,
                                             "description": "Puissant, robuste et économique. Fabriqués en Europe pour le compte de Bubendorf les moteurs Bubendorf sont le juste équilibre entre qualité de produit et prix attractif.",
                                             "questions": [
                                                 {
@@ -156,7 +156,7 @@
                                                             "label": "Commande Bubendorf En Applique",
                                                             "image": "/assets/marque/electrique/type/Bubendorf En Applique.png",
                                                             "id": 1,
-                                                            "price": 9.0
+                                                            "price": 1000.0
                                                         },
                                                         {
                                                             "label": "Commande Bubendorf EnCastré",
