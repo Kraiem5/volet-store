@@ -26,6 +26,9 @@ const CheckboxInput = ({ ques, onUpdateTotalPrice, onOptionSelected, defaultValu
     const newTotalPrice = selectedOption ? selectedOption.price : 0;
     onUpdateTotalPrice(ques.title, newTotalPrice);
   }, [selectedOption, ques.title]);
+  useEffect(() => {
+    setSelectedOption(defaultValue || null);
+  }, [defaultValue ]);
 
   return (
     <div className='d-flex'>
@@ -62,7 +65,6 @@ const CheckboxInput = ({ ques, onUpdateTotalPrice, onOptionSelected, defaultValu
           </div>
         );
       })}
-      {/* <div>{selectedOptionDescription}</div> Affichez la description ici */}
     </div>
   );
 };

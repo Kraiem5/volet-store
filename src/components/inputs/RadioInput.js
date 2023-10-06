@@ -24,7 +24,12 @@ const RadioInput = ({ ques, onUpdateTotalPrice, onOptionSelected, defaultValue }
   useEffect(() => {
     const newTotalPrice = selectedOption ? selectedOption.price : 0;
     onUpdateTotalPrice(ques.title, newTotalPrice);
-  }, [selectedOption, ques.title]);
+  }, [selectedOption, ques.title ]);
+  
+  useEffect(() => {
+    setSelectedOption(defaultValue || null);
+  }, [defaultValue]);
+
 
   return (
     <div className='d-flex'>

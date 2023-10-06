@@ -11,9 +11,6 @@ import SelectOption from './inputs/SelectOption'
 import Devis from './Devis';
 import { Card } from 'react-bootstrap';
 
-
-
-
 const QuestionCard = ({ currentStep }) => {
   const stepList = useSelector((state) => state?.ste?.stepData?.stepList);
   const [totalPrices, setTotalPrices] = useState({});
@@ -27,66 +24,67 @@ const QuestionCard = ({ currentStep }) => {
       [questionTitle]: totalPrice,
     }));
   };
-
-
-
   const handleOptionSelected = (questionTitle, option) => {
     setSelectedOptions((prevSelectedOptions) => {
       const updatedSelectedOptions = { ...prevSelectedOptions };
-
+  
       // Fonction récursive pour supprimer les sous-options et sous-questions
       const removeSubOptionsAndQuestions = (opt) => {
         if (opt.questions && opt.questions.length > 0) {
           opt.questions.forEach((subQuestion) => {
-            // console.log("subquestion", updatedSelectedOptions[subQuestion.title].price);
-            // if (updatedSelectedOptions[subQuestion.title]?.price) {
-            //   updatedSelectedOptions[subQuestion.title].price = 0;
-            // }
+            const subQuestionPrice = updatedSelectedOptions[subQuestion.title]?.price || 0;
             delete updatedSelectedOptions[subQuestion.title];
-
+            handleUpdateTotalPrice(subQuestion.title, -subQuestionPrice);
+  
             if (subQuestion.options && subQuestion.options.length > 0) {
               subQuestion.options.forEach((subOption) => {
-                // console.log("suboption", updatedSelectedOptions[subOption.title]);
+                const subOptionPrice = updatedSelectedOptions[subOption.title]?.price || 0;
                 delete updatedSelectedOptions[subOption.title];
-
+                handleUpdateTotalPrice(subOption.title, -subOptionPrice);
+  
                 // Si cette sous-option a également des sous-questions, supprimez-les également
                 if (subOption.questions && subOption.questions.length > 0) {
                   subOption.questions.forEach((subSubQuestion) => {
-                    // console.log("subsub", updatedSelectedOptions[subSubQuestion.title]);
-                    // if (updatedSelectedOptions[subSubQuestion.title]?.price) {
-                    //   updatedSelectedOptions[subSubQuestion.title].price = 0;
-                    // }
+                    const subSubQuestionPrice = updatedSelectedOptions[subSubQuestion.title]?.price || 0;
+                    console.log(handleUpdateTotalPrice(subSubQuestion.title,-subSubQuestionPrice));
+                    handleUpdateTotalPrice(subSubQuestion.title, -subSubQuestionPrice);
                     delete updatedSelectedOptions[subSubQuestion.title];
                   });
                 }
               });
             }
-
             removeSubOptionsAndQuestions(subQuestion);
           });
-          
         }
       };
-      
+  
       // Supprimer toutes les sous-questions et sous-options de l'option précédemment sélectionnée
       const previousOption = updatedSelectedOptions[questionTitle];
       if (previousOption) {
         removeSubOptionsAndQuestions(previousOption);
       }
-      console.log(option);
+  
+      // Annuler la soustraction de la sous-option si elle existe
+      if (prevSelectedOptions[questionTitle] && prevSelectedOptions[questionTitle] !== option) {
+        const prevOptionPrice = prevSelectedOptions[questionTitle].price;
+        handleUpdateTotalPrice(questionTitle, -prevOptionPrice);
+      }
+  
       updatedSelectedOptions[questionTitle] = option;
-      
+  
+      // Ajouter le prix de la nouvelle option au total
+      handleUpdateTotalPrice(questionTitle, option.price);
+  
       return updatedSelectedOptions;
     });
     setSelectedOptionDescription(option.description || selectedOptionDescription);
   };
-
+  
 
   const calculateTotal = () => {
     const totalPriceArray = Object.values(totalPrices);
-
     const validPrices = totalPriceArray.filter((price) => !isNaN(price));
-
+    console.log(validPrices);
     if (validPrices.length > 0) {
       return validPrices.reduce((acc, price) => acc + price, 0);
     } else {
@@ -101,10 +99,10 @@ const QuestionCard = ({ currentStep }) => {
     let newId = id + 1
     navigate(`/step/${newId}`)
   }
+
   const renderQuestions = (questions, prefix = '') => {
     return questions.map((question, index) => {
       const defaultValue = selectedOptions[question.title] || '';
-
       return (
         <div key={index}>
           <h5>{prefix + question.title}</h5>
@@ -194,7 +192,6 @@ const QuestionCard = ({ currentStep }) => {
 
               </div>
               <>
-
                 <Devis stepList={stepList} prix={calculateTotal()} selectedOption={selectedOptions} />
               </>
             </>

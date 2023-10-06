@@ -279,13 +279,13 @@
                                                             "label": "Commande Murale Individuelle",
                                                             "image": "/assets/marque/radio/type/murale-AOk.jpg",
                                                             "id": 1,
-                                                            "price": 5.0
+                                                            "price": 15.0
                                                         },
                                                         {
                                                             "label": "Commande Portative Individuelle",
                                                             "image": "/assets/marque/radio/type/portatif-Aok.jpg",
                                                             "id": 1,
-                                                            "price": 5.0
+                                                            "price": 25.0
                                                         }
                                                     ]
                                                 }
