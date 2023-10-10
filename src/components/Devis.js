@@ -41,7 +41,6 @@ const Devis = ({ stepList, prix, selectedOption }) => {
 
     setTitles(newTitles);
   }, [stepList]);
-console.log(options);
   // Excluez les titres "Quantité" et "Livraison" du tableau des titres
   const filteredTitles = titles.filter(title => title !== 'Quantité' && title !== 'Livraison');
   return (

@@ -476,6 +476,7 @@
             "name": "stepFour",
             "id": 4,
             "questions": [
+                
                 {
                     "id": 1,
                     "title": "Prénom",
@@ -494,12 +495,8 @@
                     "type": "text"
                 },
                 {
-                    "title": "E-mail",
+                    "title": "E_mail",
                     "type": "mail"
-                },
-                {
-                    "title": "",
-                    "type": "submit"
                 }
             ]
         }

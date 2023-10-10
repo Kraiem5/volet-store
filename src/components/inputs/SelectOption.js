@@ -18,8 +18,8 @@ const SelectOption = ({ ques, onOptionSelected, defaultValue }) => {
 
   return (
     <Controller
-      name="name"
-      control={control}
+    name={`${ques.title}`}
+    control={control}
       render={({ field }) => (
         <select
           {...field}

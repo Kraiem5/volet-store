@@ -22,6 +22,31 @@ export const getStepList = createAsyncThunk(
   }
 )
 
+
+export const ajouterUser = createAsyncThunk(
+  'user/ajouterUser',
+  async (data, {rejectWithValue})=>{
+    try {
+      const res = await axios.post('http://localhost:7000/api',data)
+      return res.data
+    } catch (error) {
+      return rejectWithValue(error.response.data)
+    }
+  }
+)
+// export const postUser = createAsyncThunk(
+//   'user/postUser',
+//   async (data, { rejectWithValue }) => {
+//     try {
+//       const res = await axios.post('http://localhost:7000/api', data)
+//       return res.data
+//     } catch (error) {
+//       console.log(error);
+//       return rejectWithValue(error.response.data)
+//     }
+//   }
+// )
+
 export const stepSlice = createSlice({
   name: 'step',
   initialState,

@@ -5,6 +5,5 @@ import optionSlice from './slices/option.slice'
 export const store = configureStore({
     reducer: {
         ste: stepSlice,
-        opt : optionSlice
     },
 })

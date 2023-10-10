@@ -3,6 +3,7 @@ import { Card } from 'react-bootstrap';
 import { useForm, Controller } from 'react-hook-form';
 
 const RadioInput = ({ ques, onUpdateTotalPrice, onOptionSelected, defaultValue }) => {
+  // console.log(ques);
   const [selectedOption, setSelectedOption] = useState(defaultValue || null);
 
   const {

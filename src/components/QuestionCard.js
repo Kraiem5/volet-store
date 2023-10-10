@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import RadioInput from './inputs/RadioInput';
 import CheckBox from './inputs/CheckboxInput';
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +9,9 @@ import PhoneInput from './inputs/PhoneInput';
 import NumberInput from './inputs/NumberInput';
 import SelectOption from './inputs/SelectOption'
 import Devis from './Devis';
-import { Card } from 'react-bootstrap';
+import {  Card } from 'react-bootstrap';
+import { ajouterUser } from '../redux/slices/step.slice';
+import AlertMessage from './alerts/alert'
 
 const QuestionCard = ({ currentStep }) => {
   const stepList = useSelector((state) => state?.ste?.stepData?.stepList);
@@ -17,6 +19,8 @@ const QuestionCard = ({ currentStep }) => {
   const navigate = useNavigate()
   const [selectedOptions, setSelectedOptions] = useState({});
   const [selectedOptionDescription, setSelectedOptionDescription] = useState('');
+  const [userForm, setUserForm] = useState({})
+  const dispatch = useDispatch()
 
   const handleUpdateTotalPrice = (questionTitle, totalPrice) => {
     setTotalPrices((prevTotalPrices) => ({
@@ -114,13 +118,13 @@ const QuestionCard = ({ currentStep }) => {
             <CheckBox ques={question} onUpdateTotalPrice={handleUpdateTotalPrice} onOptionSelected={(option) => handleOptionSelected(question.title, option)} defaultValue={defaultValue} />
           )}
           {question.type === 'text' && (
-            <TextInput />
+            <TextInput ques={question} user={handleUserData} />
           )}
           {question.type === 'mail' && (
-            <EmailInput />
+            <EmailInput ques={question} user={handleUserData} />
           )}
           {question.type === 'tel' && (
-            <PhoneInput />
+            <PhoneInput ques={question} user={handleUserData} />
           )}
           {question.type === 'number' && (
             <NumberInput ques={question} onUpdateTotalPrice={handleUpdateTotalPrice} onOptionSelected={(option) => handleOptionSelected(question.title, option)} defaultValue={defaultValue} />
@@ -134,12 +138,27 @@ const QuestionCard = ({ currentStep }) => {
       );
     });
   };
-  console.log(selectedOptions);
+  const handleUserData = (userData) => {
+    setUserForm(Object.assign({}, userForm, userData));
+  };
+  const [showAlert, setShowAlert] = useState();
+  const handleSubmitForm = () => {
+    dispatch(ajouterUser(userForm))
+      .then((response) => {
+        setShowAlert(response.payload.status)
+      });
+  }
+
   return (
     <div>
       <div>
+
+        <AlertMessage res={showAlert} />
+      </div>
+      <div>
         {stepList[currentStep]?.questions && renderQuestions(stepList[currentStep].questions)}
       </div>
+
       <div className='d-flex'>
         <div>
           {currentStep === 1 && Object.keys(selectedOptions).length > 0 &&
@@ -163,7 +182,7 @@ const QuestionCard = ({ currentStep }) => {
             })}
         </div>
         <div>
-          {selectedOptionDescription && (
+          {currentStep === 1 && selectedOptionDescription && (
             <Card style={{ width: '30rem' }}>
               <Card.Body>
                 <Card.Title>Description : </Card.Title>
@@ -186,18 +205,16 @@ const QuestionCard = ({ currentStep }) => {
         </div>
         <div className="">
           {currentStep === stepList.length - 1 && (
-            <>
-              <div>
-                <button type='submit' >Envoyer</button>
-              </div>
-              <>
-                <Devis stepList={stepList} prix={calculateTotal(selectedOptions)} selectedOption={selectedOptions} />
-              </>
-            </>
+            <div>
+              <button type='submit' onClick={handleSubmitForm} >Envoyer</button>
+            </div>
           )
           }
         </div>
       </div>
+      {currentStep === stepList.length - 1 && (
+        <Devis stepList={stepList} prix={calculateTotal(selectedOptions)} selectedOption={selectedOptions} />
+      )}
       <p>Total Price in Parent Component: {calculateTotal(selectedOptions)}</p>
     </div>
   );
